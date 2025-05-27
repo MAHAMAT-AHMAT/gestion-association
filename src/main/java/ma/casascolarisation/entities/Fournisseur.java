@@ -17,9 +17,15 @@ public class Fournisseur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    private TypeFournisseur typeFournisseur;
+    @Enumerated(EnumType.STRING)
+    private NomTypeFournisseur typeFournisseur;
+
+    public enum NomTypeFournisseur {
+        ECOLE,
+        SANTE,
+        LOISIRS,
+        AUTRE
+    }
 
     private String nom;
     private String adresse;

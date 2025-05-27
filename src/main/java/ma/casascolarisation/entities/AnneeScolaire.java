@@ -2,6 +2,7 @@ package ma.casascolarisation.entities;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -22,23 +23,23 @@ public class AnneeScolaire {
     private LocalDate dateFin;
     private boolean estActive;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("annee")
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Bourse> bourses;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("annee")
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Don> dons;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("annee")
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Eleve> eleves;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("annee")
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Depense> depenses;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("annee")
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 }

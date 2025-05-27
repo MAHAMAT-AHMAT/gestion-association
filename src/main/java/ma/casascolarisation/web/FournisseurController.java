@@ -3,6 +3,7 @@ package ma.casascolarisation.web;
 import lombok.RequiredArgsConstructor;
 import ma.casascolarisation.entities.Fournisseur;
 import ma.casascolarisation.services.FournisseurService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +16,32 @@ public class FournisseurController {
     private final FournisseurService fournisseurService;
 
     @GetMapping
-    public List<Fournisseur> findAll() {
-        return fournisseurService.findAll();
+    public ResponseEntity<List<Fournisseur>> findAll() {
+        return ResponseEntity.ok(fournisseurService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Fournisseur findById(@PathVariable Long id) {
-        return fournisseurService.findById(id);
+    public ResponseEntity<Fournisseur> findById(@PathVariable Long id) {
+        Fournisseur fournisseur = fournisseurService.findById(id);
+        return ResponseEntity.ok(fournisseur);
     }
 
     @PostMapping
-    public Fournisseur save(@RequestBody Fournisseur obj) {
-        return fournisseurService.save(obj);
+    public ResponseEntity<Fournisseur> save(@RequestBody Fournisseur obj) {
+        Fournisseur savedFournisseur = fournisseurService.save(obj);
+        return ResponseEntity.status(201).body(savedFournisseur);
     }
 
     @PutMapping("/{id}")
-    public Fournisseur update(@PathVariable Long id, @RequestBody Fournisseur updated) {
+    public ResponseEntity<Fournisseur> update(@PathVariable Long id, @RequestBody Fournisseur updated) {
         updated.setId(id);
-        return fournisseurService.save(updated);
+        Fournisseur savedFournisseur = fournisseurService.save(updated);
+        return ResponseEntity.ok(savedFournisseur);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         fournisseurService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

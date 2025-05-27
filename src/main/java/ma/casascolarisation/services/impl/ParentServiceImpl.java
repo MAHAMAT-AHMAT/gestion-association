@@ -1,7 +1,9 @@
 package ma.casascolarisation.services.impl;
 
 import lombok.RequiredArgsConstructor;
+import ma.casascolarisation.entities.Eleve;
 import ma.casascolarisation.entities.Parent;
+import ma.casascolarisation.repositories.EleveRepo;
 import ma.casascolarisation.repositories.ParentRepo;
 import ma.casascolarisation.services.ParentService;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.List;
 public class ParentServiceImpl implements ParentService {
 
     private final ParentRepo parentRepo;
+    private final EleveRepo eleveRepo;
 
     @Override
     public List<Parent> findAll() {
@@ -26,6 +29,14 @@ public class ParentServiceImpl implements ParentService {
 
     @Override
     public Parent save(Parent obj) {
+        // Reload eleve from database if it exists
+        if (obj.getEleve() != null && obj.getEleve().getId() != null) {
+            Eleve eleve = eleveRepo.findById(obj.getEleve().getId()).orElse(null);
+            if (eleve != null) {
+                obj.setEleve(eleve);
+            }
+        }
+
         return parentRepo.save(obj);
     }
 

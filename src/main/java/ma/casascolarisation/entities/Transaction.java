@@ -2,6 +2,7 @@ package ma.casascolarisation.entities;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -18,11 +19,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"bourses", "transactions"})
     @ManyToOne
     private Don don;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"bourses", "dons", "eleves", "depenses", "transactions"})
     @ManyToOne
     private AnneeScolaire annee;
 

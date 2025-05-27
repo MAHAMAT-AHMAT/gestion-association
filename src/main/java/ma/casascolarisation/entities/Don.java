@@ -2,6 +2,7 @@ package ma.casascolarisation.entities;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -19,11 +20,11 @@ public class Don {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"dons"})
     @ManyToOne
     private Donateur donateur;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"dons", "bourses", "eleves", "depenses", "transactions"})
     @ManyToOne
     private AnneeScolaire annee;
 
@@ -40,11 +41,11 @@ public class Don {
     @Enumerated(EnumType.STRING)
     private StatutDon statut;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("don")
     @OneToMany(mappedBy = "don", cascade = CascadeType.ALL)
     private List<Bourse> bourses;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("don")
     @OneToMany(mappedBy = "don", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
