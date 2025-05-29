@@ -1,7 +1,7 @@
 package ma.casascolarisation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -17,11 +17,11 @@ public class Communication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JsonBackReference("donateur-communications")
     @ManyToOne
     private Donateur donateur;
 
-    @JsonIgnore
+    @JsonBackReference("utilisateur-communications")
     @ManyToOne
     private Utilisateur utilisateur;
 

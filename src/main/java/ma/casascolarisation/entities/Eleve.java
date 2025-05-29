@@ -1,5 +1,7 @@
 package ma.casascolarisation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -25,15 +27,15 @@ public class Eleve {
     private LocalDate dateNaissance;
     private String lieuNaissance;
 
-    @JsonIgnore
+    @JsonBackReference("fournisseur-eleves")
     @ManyToOne
     private Fournisseur fournisseur;
 
-    @JsonIgnore
+    @JsonBackReference("niveau-eleves")
     @ManyToOne
     private NiveauScolaire niveau;
 
-    @JsonIgnore
+    @JsonBackReference("annee-eleves")
     @ManyToOne
     private AnneeScolaire annee;
 

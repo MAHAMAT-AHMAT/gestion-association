@@ -1,7 +1,9 @@
 package ma.casascolarisation.entities;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -19,11 +21,11 @@ public class Don {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JsonBackReference("donateur-dons")
     @ManyToOne
     private Donateur donateur;
 
-    @JsonIgnore
+    @JsonBackReference("annee-dons")
     @ManyToOne
     private AnneeScolaire annee;
 

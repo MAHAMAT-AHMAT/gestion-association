@@ -1,5 +1,6 @@
 package ma.casascolarisation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -18,11 +19,11 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JsonBackReference("transaction-factures")
     @ManyToOne
     private Transaction transaction;
 
-    @JsonIgnore
+    @JsonBackReference("donateur-factures")
     @ManyToOne
     private Donateur donateur;
 

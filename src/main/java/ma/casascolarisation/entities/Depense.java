@@ -1,7 +1,7 @@
 package ma.casascolarisation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -21,15 +21,15 @@ public class Depense {
     @Enumerated(EnumType.STRING)
     private TypeDepense type;
 
-    @JsonIgnore
+    @JsonBackReference("fournisseur-depenses")
     @ManyToOne
     private Fournisseur fournisseur;
 
-    @JsonIgnore
+    @JsonBackReference("eleve-depenses")
     @ManyToOne
     private Eleve eleve;
 
-    @JsonIgnore
+    @JsonBackReference("annee-depenses")
     @ManyToOne
     private AnneeScolaire annee;
 

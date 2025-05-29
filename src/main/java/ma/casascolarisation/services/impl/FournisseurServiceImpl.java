@@ -21,16 +21,26 @@ public class FournisseurServiceImpl implements FournisseurService {
 
     @Override
     public Fournisseur findById(Long id) {
-        return fournisseurRepo.findById(id).orElse(null);
+        return fournisseurRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Fournisseur introuvable avec id = " + id));
     }
 
     @Override
-    public Fournisseur save(Fournisseur obj) {
-        return fournisseurRepo.save(obj);
+    public Fournisseur save(Fournisseur fournisseur) {
+        if (fournisseur == null) {
+            throw new IllegalArgumentException("Le fournisseur ne peut pas être null");
+        }
+        if (fournisseur.getTypeFournisseur() == null) {
+            throw new IllegalArgumentException("Le type de fournisseur est obligatoire");
+        }
+        return fournisseurRepo.save(fournisseur);
     }
 
     @Override
     public void delete(Long id) {
+        if (!fournisseurRepo.existsById(id)) {
+            throw new RuntimeException("Fournisseur introuvable avec id = " + id);
+        }
         fournisseurRepo.deleteById(id);
     }
 }

@@ -1,7 +1,8 @@
 package ma.casascolarisation.entities;
 
-import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ public class AnneeScolaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String libelle;
     private LocalDate dateDebut;
     private LocalDate dateFin;
