@@ -1,0 +1,16 @@
+# IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Maven target directory
+target/
+
+# Build output
+out/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
