@@ -42,6 +42,7 @@ ma/casascolarisation/services/EleveService.class
 ma/casascolarisation/CasaScolarisationApplication.class
 ma/casascolarisation/entities/Utilisateur.class
 ma/casascolarisation/services/impl/CommunicationServiceImpl.class
+ma/casascolarisation/services/impl/DocumentServiceImpl$1.class
 ma/casascolarisation/entities/Fournisseur$NomTypeFournisseur.class
 ma/casascolarisation/web/CommunicationController.class
 ma/casascolarisation/entities/Fournisseur$FournisseurBuilder.class
